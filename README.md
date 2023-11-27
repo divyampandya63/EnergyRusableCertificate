@@ -22,7 +22,7 @@ The Solidity smart contract is located in the `EnergyReusableCertificate.sol` fi
 
 ## UI Scripts
 
-### 1. Token Transfer UI - Script 1
+### 1. Ether Transfer UI - Script 1
 
 The first HTML script (`index.html`) provides a simple UI for transferring ERC-20 tokens. It includes fields for the recipient's address and the token amount, along with a button to initiate the transfer.
 
