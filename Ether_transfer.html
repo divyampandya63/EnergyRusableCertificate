@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Token Transfer UI</title>
+        <!-- Include Web3.js -->
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+    </head>
+    <body>
+        <h1>Token Transfer</h1>
+        
+        <label for="toAddress">To Address:</label>
+        <input type="text" id="toAddress" placeholder="Enter recipient address">
+
+        <label for="tokenAmount">Token Amount:</label>
+        <input type="number" id="tokenAmount" placeholder="Enter token amount">
+
+        <button onclick="transferTokens()">Transfer Tokens</button>
+
+        <script>
+            const web3 = new Web3(window.ethereum);
+
+            async function requestAccountAccess() {
+              try {
+                await window.ethereum.enable();
+                return true;
+              } catch (error) {
+              console.error('Error while requesting account access:', error);
+              return false;
+              }
+            }
+
+            function transferTokens() {
+              if (typeof window.ethereum !== 'undefined') {
+              let web3 = new Web3(window.ethereum);
+              requestAccountAccess();
+              } else {
+                console.error('MetaMask not detected. Please install MetaMask.');
+              }
+
+              const senderAddress = '0xA770A18BAcB242A5E751962Da7B691D3ACa67EaB';
+              const recipientAddress = document.getElementById("toAddress").value;
+              const tokenAmount = document.getElementById("tokenAmount").value;
+
+              const amountInWei = web3.utils.toWei(tokenAmount, 'ether'); // Sending 1 Ether as an example
+              web3.eth.sendTransaction({
+              from: senderAddress,
+              to: recipientAddress,
+              value: amountInWei,
+              }, (error, transactionHash) => {
+                if (!error) {
+                  console.log('Transaction sent. Transaction hash:', transactionHash);
+                } else {
+                  console.error('Error sending transaction:', error);
+                }
+              });
+            }
+        </script>
+    </body>
