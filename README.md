@@ -36,6 +36,10 @@ The third HTML script (`index3.html`) provides a UI for transferring tokens dire
 
 ## Getting Started
 
+
+npm install @openzeppelin/contracts
+
+
 1. Clone the repository:
 
    ```bash
